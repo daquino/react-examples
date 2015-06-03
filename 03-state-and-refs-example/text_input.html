@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>State and Refs example</title>
+        <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <script src="http://fb.me/react-0.13.3.js"></script>
+        <script src="http://fb.me/JSXTransformer-0.13.3.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    </head>
+    <body>
+      <script type="text/jsx">
+          /** @jsx React.DOM */
+          var Hello = React.createClass({
+            updateName: function() {
+              var value = React.findDOMNode(this.refs.name).value;
+              this.setState({name: value});
+            },
+            getInitialState: function() {
+              return {};
+            },
+            render: function() {
+              return (
+                <div className="col-md-4 col-md-offset-4">
+                  <h1>Hello {this.state.name}!</h1>
+                  <input type="text" onChange={this.updateName} ref="name" />
+                </div>
+              );
+            }
+          });
+          React.render(<Hello />, document.body);
+      </script>
+    </body>
+</html>

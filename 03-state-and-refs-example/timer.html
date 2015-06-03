@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>untitled</title>
+        <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <script src="http://fb.me/react-0.13.3.js"></script>
+        <script src="http://fb.me/JSXTransformer-0.13.3.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    </head>
+    <body>
+      <script type="text/jsx">
+          /** @jsx React.DOM */
+          var Timer = React.createClass({
+            getInitialState: function() {
+              return {
+                seconds_elapsed: 0
+              };
+            },
+            componentDidMount: function() {
+              setInterval(function() {
+                this.setState({seconds_elapsed: this.state.seconds_elapsed+1});
+              }.bind(this), 1000);
+            },
+            render: function() {
+              return (
+                <h1>{this.state.seconds_elapsed} seconds have passed.</h1>
+              );
+            }
+          });
+
+          React.render(<Timer />, document.getElementById('container'));
+      </script>
+      <div id="container"></div>
+    </body>
+</html>

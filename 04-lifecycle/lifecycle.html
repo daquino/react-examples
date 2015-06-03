@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>untitled</title>
+        <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+        <script src="http://fb.me/react-0.13.3.js"></script>
+        <script src="http://fb.me/JSXTransformer-0.13.3.js"></script>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    </head>
+    <body>
+      <script type="text/jsx">
+          /** @jsx React.DOM */
+          function showList() {
+            React.render(<Main />, document.getElementById("content"));
+          }
+
+          function hideList() {
+            React.unmountComponentAtNode(document.getElementById("content"));
+          }
+
+          var serviceCall;
+
+          var Main = React.createClass({
+            componentWillMount: function() {
+              console.log("Will mount.");
+            },
+            componentDidMount: function() {
+              console.log("Did mount.")
+              serviceCall = setTimeout(function() {
+                this.setState({fruit: ["Work out","Write Code","Get to Legendary"]})
+              }.bind(this), 1000);
+            },
+            componentWillUnmount: function() {
+              console.log("Unmounting...");
+              clearTimeout(serviceCall);
+            },
+            getInitialState: function() {
+              return {fruit: []};
+            },
+            render: function() {
+              console.log("Rendering...");
+              var todos = this.state.fruit.map(function(item, i) {
+                return <li key={i}>{item}</li>;
+              });
+              return (
+                <div>
+                  <h1>Todo</h1>
+                  <ul>
+                    {todos}
+                  </ul>
+                </div>
+              );
+            }
+          });
+      </script>
+      <div class="container" id="container">
+        <div class="row">
+          <button class="btn btn-primary" onClick="showList()">Show</button>
+          <button class="btn btn-danger" onClick="hideList()">Hide</button>
+        </div>
+        <div id="content" class="row">
+        </div>
+      </div>
+    </body>
+</html>
