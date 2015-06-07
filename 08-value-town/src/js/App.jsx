@@ -1,3 +1,5 @@
+var cardTypes = ['Minion', 'Spell', 'Weapon', 'Enchantment'];
+
 var App = React.createClass({
   getInitialState: function() {
     return {
@@ -17,16 +19,8 @@ var App = React.createClass({
     });
     this.setState({cards: cards, cardIndex: 0});
   },
-  validateCard: function(card, index) {
-    if(card.id.endsWith('e') || card.id.startsWith('HERO')
-        || card.id.startsWith('CS2') || card.id.endsWith('o')
-        || card.id.endsWith('e2') || card.id.startsWith('GAME')
-        || card.id.startsWith('DS1h') || card.id.startsWith('CS1h')) {
-      return false;
-    }
-    else {
-      return true;
-    }
+  validateCard: function(card) {
+    return card.collectible && cardTypes.indexOf(card.type) !== -1;
   },
   addValueCard: function(card) {
     var updated_value_cards = this.state.value_cards.concat([card]);
