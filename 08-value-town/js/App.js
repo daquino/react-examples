@@ -11,14 +11,17 @@ var App = React.createClass({displayName: "App",
       .done(this.addCards);
   },
   addCards: function(data) {
-    var filteredData = data['Basic'].filter(validateCard);
+    var filteredData = data['Basic'].filter(this.validateCard);
     var cards = filteredData.map(function(card) {
       return 'http://wow.zamimg.com/images/hearthstone/cards/enus/original/' + card.id + '.png';
     });
     this.setState({cards: cards, cardIndex: 0});
   },
-  validateCard: function(card) {
-    if(card.id.endsWith('e') || card.id.startsWith('HERO') || card.id === 'CS2_102') {
+  validateCard: function(card, index) {
+    if(card.id.endsWith('e') || card.id.startsWith('HERO')
+        || card.id.startsWith('CS2') || card.id.endsWith('o')
+        || card.id.endsWith('e2') || card.id.startsWith('GAME')
+        || card.id.startsWith('DS1h') || card.id.startsWith('CS1h')) {
       return false;
     }
     else {
