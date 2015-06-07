@@ -1,0 +1,39 @@
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  max-width: 1920px; /* YOUR BG MAX SIZE */
+  background:url("../images/background.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+body {
+  color: #000;
+  background-color: transparent;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 75px;
+}
+
+img.selected {
+  max-width: 25%;
+  max-height: 25%;
+}
+
+.im-centered { margin: auto; max-width: 1920px;}
