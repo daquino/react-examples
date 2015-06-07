@@ -39,11 +39,11 @@ var App = React.createClass({
         <h1>Value or Scrub?</h1>
         <div className="container">
           <div className="row">
-            <ValueTown cards={this.state.value_cards}/>
+            <CardSelections title="Value Town" cards={this.state.value_cards}/>
             <Selection card={currentCard}
               addValueCard={this.addValueCard}
               addScrubCard={this.addScrubCard}/>
-            <ScrubTown cards={this.state.scrub_cards}/>
+            <CardSelections title="Scrub Town" cards={this.state.scrub_cards}/>
           </div>
         </div>
       </div>

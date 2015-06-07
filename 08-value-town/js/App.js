@@ -39,11 +39,11 @@ var App = React.createClass({displayName: "App",
         React.createElement("h1", null, "Value or Scrub?"), 
         React.createElement("div", {className: "container"}, 
           React.createElement("div", {className: "row"}, 
-            React.createElement(ValueTown, {cards: this.state.value_cards}), 
+            React.createElement(CardSelections, {title: "Value Town", cards: this.state.value_cards}), 
             React.createElement(Selection, {card: currentCard, 
               addValueCard: this.addValueCard, 
               addScrubCard: this.addScrubCard}), 
-            React.createElement(ScrubTown, {cards: this.state.scrub_cards})
+            React.createElement(CardSelections, {title: "Scrub Town", cards: this.state.scrub_cards})
           )
         )
       )
