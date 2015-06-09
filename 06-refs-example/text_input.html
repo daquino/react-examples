@@ -12,18 +12,24 @@
       <script type="text/jsx">
           /** @jsx React.DOM */
           var Hello = React.createClass({
-            updateName: function() {
-              var value = React.findDOMNode(this.refs.name).value;
+            updateName: function(e) {
+              var value = e.target.value;
               this.setState({name: value});
             },
             getInitialState: function() {
               return {};
             },
+            resetName: function () {
+              React.findDOMNode(this.refs.name).focus();
+              this.setState({name: ''})
+            },
             render: function() {
               return (
                 <div className="col-md-4 col-md-offset-4">
                   <h1>Hello {this.state.name}!</h1>
-                  <input type="text" onChange={this.updateName} ref="name" />
+                  <input type="text" onChange={this.updateName} value={this.state.name} ref="name" />
+                  &nbsp;
+                  <button onClick={this.resetName}>Reset and Focus</button>
                 </div>
               );
             }
