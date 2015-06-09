@@ -12,5 +12,4 @@ var CardSelections = React.createClass({displayName: "CardSelections",
       )
     );
   }
-
 });

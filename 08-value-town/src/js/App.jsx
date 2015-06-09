@@ -5,7 +5,7 @@ var App = React.createClass({
     return {
       cards: [],
       value_cards: [],
-      scrub_cards: [],
+      bad_cards: [],
     };
   },
   componentDidMount: function() {
@@ -27,23 +27,23 @@ var App = React.createClass({
     var updatedCardIndex = this.state.cardIndex+1;
     this.setState({value_cards: updated_value_cards, cardIndex: updatedCardIndex});
   },
-  addScrubCard: function(card) {
-    var updated_scrub_cards = this.state.scrub_cards.concat([card]);
+  addBadCard: function(card) {
+    var updated_bad_cards = this.state.bad_cards.concat([card]);
     var updatedCardIndex = this.state.cardIndex+1;
-    this.setState({scrub_cards: updated_scrub_cards, cardIndex: updatedCardIndex});
+    this.setState({bad_cards: updated_bad_cards, cardIndex: updatedCardIndex});
   },
   render: function() {
     var currentCard = this.state.cards[this.state.cardIndex];
     return (
-      <div className="main">\
-        <h1>Value or Scrub?</h1>
+      <div className="main">
+        <h1>Value or Bad?</h1>
         <div className="container">
           <div className="row">
             <CardSelections title="Value Town" cards={this.state.value_cards}/>
             <Selection card={currentCard}
               addValueCard={this.addValueCard}
-              addScrubCard={this.addScrubCard}/>
-            <CardSelections title="Scrub Town" cards={this.state.scrub_cards}/>
+              addBadCard={this.addBadCard}/>
+            <CardSelections title="Badville" cards={this.state.bad_cards}/>
           </div>
         </div>
       </div>

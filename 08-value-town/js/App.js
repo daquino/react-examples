@@ -5,7 +5,7 @@ var App = React.createClass({displayName: "App",
     return {
       cards: [],
       value_cards: [],
-      scrub_cards: [],
+      bad_cards: [],
     };
   },
   componentDidMount: function() {
@@ -27,23 +27,23 @@ var App = React.createClass({displayName: "App",
     var updatedCardIndex = this.state.cardIndex+1;
     this.setState({value_cards: updated_value_cards, cardIndex: updatedCardIndex});
   },
-  addScrubCard: function(card) {
-    var updated_scrub_cards = this.state.scrub_cards.concat([card]);
+  addBadCard: function(card) {
+    var updated_bad_cards = this.state.bad_cards.concat([card]);
     var updatedCardIndex = this.state.cardIndex+1;
-    this.setState({scrub_cards: updated_scrub_cards, cardIndex: updatedCardIndex});
+    this.setState({bad_cards: updated_bad_cards, cardIndex: updatedCardIndex});
   },
   render: function() {
     var currentCard = this.state.cards[this.state.cardIndex];
     return (
-      React.createElement("div", {className: "main"}, "\\", 
-        React.createElement("h1", null, "Value or Scrub?"), 
+      React.createElement("div", {className: "main"}, 
+        React.createElement("h1", null, "Value or Bad?"), 
         React.createElement("div", {className: "container"}, 
           React.createElement("div", {className: "row"}, 
             React.createElement(CardSelections, {title: "Value Town", cards: this.state.value_cards}), 
             React.createElement(Selection, {card: currentCard, 
               addValueCard: this.addValueCard, 
-              addScrubCard: this.addScrubCard}), 
-            React.createElement(CardSelections, {title: "Scrub Town", cards: this.state.scrub_cards})
+              addBadCard: this.addBadCard}), 
+            React.createElement(CardSelections, {title: "Badville", cards: this.state.bad_cards})
           )
         )
       )
