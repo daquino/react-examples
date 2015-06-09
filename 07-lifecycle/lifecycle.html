@@ -21,28 +21,56 @@
 
           var serviceCall;
 
+          var Todo = React.createClass({
+            toggle: function() {
+              this.props.toggleTodo(this.props.index);
+            },
+            componentWillReceiveProps: function(nextProps) {
+              console.log('Todo componentWillReceiveProps.');
+            },
+            componentWillUpdate: function(nextProps, nextState) {
+              console.log('Todo componentWillUpdate.')
+            },
+            componentDidUpdate: function(prevProps, prevState) {
+              console.log('Todo componentDidUpdate.')
+            },
+            render: function() {
+              var style = this.props.item.selected ? {textDecoration: 'line-through'} : null;
+              return (
+                <li style={style} onClick={this.toggle}>{this.props.item.title}</li>
+              );
+            }
+          });
+
           var Main = React.createClass({
+            toggleTodo: function(index) {
+              var items = $.extend(true, [], this.state.todos);
+              items[index].selected = !items[index].selected;
+              this.setState({todos: items});
+            },
             componentWillMount: function() {
-              console.log("Will mount.");
+              console.log("Main componentWillMount.");
             },
             componentDidMount: function() {
-              console.log("Did mount.")
+              console.log("Main componentDidMount.")
               serviceCall = setTimeout(function() {
-                this.setState({fruit: ["Work out","Write Code","Get to Legendary"]})
+                this.setState({todos: [ { title: "Work out", selected:false},
+                                        { title: "Write Code", selected: false},
+                                        { title: "Get to Legendary", selected: false}]});
               }.bind(this), 1000);
             },
             componentWillUnmount: function() {
-              console.log("Unmounting...");
+              console.log("Main Unmounting...");
               clearTimeout(serviceCall);
             },
             getInitialState: function() {
-              return {fruit: []};
+              return {todos: []};
             },
             render: function() {
-              console.log("Rendering...");
-              var todos = this.state.fruit.map(function(item, i) {
-                return <li key={i}>{item}</li>;
-              });
+              console.log("Main Rendering...");
+              var todos = this.state.todos.map(function(item, i) {
+                return <Todo key={i} index={i} item={item} toggleTodo={this.toggleTodo}/>
+              }.bind(this));
               return (
                 <div>
                   <h1>Todo</h1>
