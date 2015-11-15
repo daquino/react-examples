@@ -1,9 +1,14 @@
 var LocationForm = React.createClass({displayName: "LocationForm",
+  getInitialState: function() {
+    return {
+      location: ''
+    };
+  },
   retrieveForecast: function(e) {
     e.preventDefault();
-    var location = React.findDOMNode(this.refs.location).value;
+    var location = this.state.location;
     if(location.length > 3) {
-      this.props.retrieveForecast(React.findDOMNode(this.refs.location).value);
+      this.props.retrieveForecast(location);
     }
   },
   buildLocationGroupClass: function() {
@@ -36,6 +41,9 @@ var LocationForm = React.createClass({displayName: "LocationForm",
     }
     return locationFeedback;
   },
+  locationChanged: function(e) {
+    this.setState({location: e.target.value});
+  },
   render: function() {
     var locationGroupClass = this.buildLocationGroupClass();
     var locationFeedback = this.buildLocationFeedback();
@@ -45,7 +53,7 @@ var LocationForm = React.createClass({displayName: "LocationForm",
         React.createElement("div", {className: locationGroupClass}, 
           React.createElement("label", {className: "sr-only", htmlFor: "location"}, "Location"), 
           React.createElement("div", {className: "input-group"}, 
-            React.createElement("input", {autoComplete: "off", ref: "location", type: "text", id: "location", className: "form-control", placeholder: "Nashville"}), 
+            React.createElement("input", {autoComplete: "off", name: "location", value: this.state.location, onChange: this.locationChanged, type: "text", id: "location", className: "form-control", placeholder: "Nashville"}), 
             locationFeedback
           )
         ), 

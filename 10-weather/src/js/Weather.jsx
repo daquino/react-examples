@@ -90,14 +90,16 @@ var WeatherApp = React.createClass({
       forecastLoading: this.state.forecastLoading
     }
     return (
-        <div className="container text-center">
-          <h1 className="text-center">ReactJS Forecast Example</h1>
-          <div id="locationForm" className="row">
-            <LocationForm {...locationFormProps} />
+        <div className="background">
+          <div className="container text-center">
+            <h1 className="text-center">ReactJS Forecast Example</h1>
+            <div id="locationForm" className="row">
+              <LocationForm {...locationFormProps} />
+            </div>
+            <Forecast forecastItems={this.state.forecast}
+              selectedIndex={this.state.selectedIndex}
+              updateSelectedIndex={this.updateSelectedIndex}/>
           </div>
-          <Forecast forecastItems={this.state.forecast}
-            selectedIndex={this.state.selectedIndex}
-            updateSelectedIndex={this.updateSelectedIndex}/>
         </div>
     );
   }

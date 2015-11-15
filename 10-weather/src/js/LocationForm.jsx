@@ -1,7 +1,12 @@
 var LocationForm = React.createClass({
+  getInitialState: function() {
+    return {
+      location: ''
+    };
+  },
   retrieveForecast: function(e) {
     e.preventDefault();
-    var location = e.target.value;
+    var location = this.state.location;
     if(location.length > 3) {
       this.props.retrieveForecast(location);
     }
@@ -36,6 +41,9 @@ var LocationForm = React.createClass({
     }
     return locationFeedback;
   },
+  locationChanged: function(e) {
+    this.setState({location: e.target.value});
+  },
   render: function() {
     var locationGroupClass = this.buildLocationGroupClass();
     var locationFeedback = this.buildLocationFeedback();
@@ -45,7 +53,7 @@ var LocationForm = React.createClass({
         <div className={locationGroupClass}>
           <label className="sr-only" htmlFor="location">Location</label>
           <div className="input-group">
-            <input autoComplete="off" type="text" id="location" className="form-control" placeholder="Nashville"/>
+            <input autoComplete="off" name="location" value={this.state.location} onChange={this.locationChanged} type="text" id="location" className="form-control" placeholder="Nashville"/>
             {locationFeedback}
           </div>
         </div>

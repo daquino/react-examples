@@ -12,7 +12,7 @@ var WeatherApp = React.createClass({displayName: "WeatherApp",
       });
     $.get('http://api.openweathermap.org/data/2.5/forecast/daily',
       {
-        q: location,
+        q: location+', TN',
         units: 'imperial',
         cnt: 7,
         APPID: 'f4187c3abe32987c26b770b411d374e7'
@@ -90,12 +90,16 @@ var WeatherApp = React.createClass({displayName: "WeatherApp",
       forecastLoading: this.state.forecastLoading
     }
     return (
-        React.createElement("div", {className: "container text-center"},
-          React.createElement("h1", {className: "text-center"}, "ReactJS Forecast Example"),
-          React.createElement("div", {id: "locationForm", className: "row"},
-            React.createElement(LocationForm, React.__spread({},  locationFormProps))
-          ),
-          React.createElement(Forecast, {forecastItems: this.state.forecast, selectedIndex: this.state.selectedIndex, updateSelectedIndex: this.updateSelectedIndex})
+        React.createElement("div", {className: "background"}, 
+          React.createElement("div", {className: "container text-center"}, 
+            React.createElement("h1", {className: "text-center"}, "ReactJS Forecast Example"), 
+            React.createElement("div", {id: "locationForm", className: "row"}, 
+              React.createElement(LocationForm, React.__spread({},  locationFormProps))
+            ), 
+            React.createElement(Forecast, {forecastItems: this.state.forecast, 
+              selectedIndex: this.state.selectedIndex, 
+              updateSelectedIndex: this.updateSelectedIndex})
+          )
         )
     );
   }

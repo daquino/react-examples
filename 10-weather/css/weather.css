@@ -67,6 +67,15 @@ div.forecast-item-selected {
   opacity: 0.01;
 }
 
+.background {
+  background-color: rgba(1, 1, 1, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
 .wi-day-sunny {
   color: #FDA428;
   font-size: 75%
